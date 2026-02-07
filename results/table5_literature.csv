@@ -1,0 +1,19 @@
+Method,Year,Architecture,Acc_2a(%),Kappa,Acc_2b(%),Eval,Source
+AMEEGNet,2025,Multi-scale EEGNet + ECA,81.17,0.75,89.83,Session-wise,Attached
+EEG-DCNet,2024,Dilated CNN + SE Attention,83.31,0.78,N/A,Sliding window,Attached
+CIACNet,2025,Dual-branch CNN+CBAM+TCN,85.15,0.80,90.05,Session-wise,Attached
+CLTNet,2025,CNN+LSTM+Transformer,83.02,0.77,87.11,Session-wise,Attached
+EEGEncoder,2025,TCN+Transformer (DSTS),86.46,0.82,N/A,Session-wise,Attached
+MSCFormer,2025,Multi-scale Conv+Transformer,82.95,0.77,88.00,5-fold CV,Attached
+BrainGridNet,2025,Two-branch Depthwise CNN,80.26,0.75,N/A,10-fold CV,Attached
+ATCNet,2022,Attention TCN,85.38,0.80,N/A,Session-wise,Baseline
+SATrans-Net,2025,DSC + Top-K Sparse Att Transformer,84.72,N/R,89.76,Cross-session,Web Research
+Transformer-GCN,2025,Transformer + GCN (PCC/COH/PLV),82.9,N/R,N/A,Subject-level,Web Research
+DB-BISAN,2025,Dual-Branch Block Self-Attention,~83,N/R,N/R,Subject-dependent,Web Research
+ADFR,2024,ShallowConvNet + Domain Adapt,N/R,N/R,N/A,LOSO cross-subj,Web Research
+GAT-GRU-Transformer,2025,GAT+GRU+Transformer+1D CNN,55.76*,N/R,N/A,Subject-dependent,Web Research
+NeuroLM,2025,LLM Foundation Model (ICLR),Multi-task,N/R,N/A,Multi-task,Web Research
+LLM-EEG (LDA),2025,LDA+CSP+Std,66.67,0.55,N/A,80/20 split,This work
+LLM-EEG (LDA),2025,LDA+CSP+APA+DVA,60.00,0.47,N/A,80/20 split,This work
+LLM-EEG (SVM),2025,SVM+CSP+Std,66.67,0.55,N/A,80/20 split,This work
+LLM-EEG (SVM),2025,SVM+CSP+APA+DVA,56.67,0.43,N/A,80/20 split,This work
