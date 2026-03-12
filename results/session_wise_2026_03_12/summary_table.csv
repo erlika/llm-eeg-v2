@@ -1,0 +1,17 @@
+Classifier,Condition,Accuracy_Mean,Accuracy_Std,Kappa_Mean,Kappa_Std,N_Subjects
+lda,baseline,0.4955,0.1389,0.3267,0.1852,9
+lda,apa,0.4749,0.1299,0.2985,0.1743,9
+svm,baseline,0.4042,0.1051,0.2050,0.1406,9
+svm,apa,0.4122,0.1190,0.2156,0.1591,9
+eegnet,baseline,0.2485,0.0052,0.0000,0.0000,9
+eegnet,apa,0.2485,0.0052,0.0000,0.0000,9
+atcnet,baseline,0.2485,0.0052,0.0000,0.0000,9
+atcnet,apa,0.2485,0.0052,0.0000,0.0000,9
+eegconformer,baseline,0.2485,0.0052,0.0000,0.0000,9
+eegconformer,apa,0.2485,0.0052,0.0000,0.0000,9
+eegtcnet,baseline,0.2485,0.0052,0.0000,0.0000,9
+eegtcnet,apa,0.2485,0.0052,0.0000,0.0000,9
+ctnet,baseline,0.2485,0.0052,0.0000,0.0000,9
+ctnet,apa,0.2485,0.0052,0.0000,0.0000,9
+mscformer,baseline,0.2485,0.0052,0.0000,0.0000,9
+mscformer,apa,0.2485,0.0052,0.0000,0.0000,9
