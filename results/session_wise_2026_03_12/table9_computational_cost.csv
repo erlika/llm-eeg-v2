@@ -1,0 +1,11 @@
+Model,Type,Params,Avg Train Time (s),Batch Size,Epochs
+LDA,Traditional,N/A,0.0,N/A,N/A
+SVM,Traditional,N/A,0.1,N/A,N/A
+EEGNET,Deep,N/A,0.0,64,200
+SHALLOW_CONVNET,Deep,N/A,N/A,64,200
+DEEP_CONVNET,Deep,N/A,N/A,64,200
+ATCNET,Deep,N/A,0.0,64,200
+EEGCONFORMER,Deep,N/A,0.0,72,200
+EEGTCNET,Deep,N/A,0.0,64,200
+CTNET,Deep,N/A,0.0,64,200
+MSCFORMER,Deep,N/A,0.0,128,200
