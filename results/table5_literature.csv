@@ -1,0 +1,30 @@
+Method,Year,Architecture,Acc_2a(%),Kappa,Acc_2b(%),Eval,Source
+AMEEGNet,2025,Multi-scale EEGNet + ECA,81.17,0.75,89.83,Session-wise,Attached
+EEG-DCNet,2024,Dilated CNN + SE Attention,83.31,0.78,N/A,Sliding window,Attached
+CIACNet,2025,Dual-branch CNN+CBAM+TCN,85.15,0.80,90.05,Session-wise,Attached
+CLTNet,2025,CNN+LSTM+Transformer,83.02,0.77,87.11,Session-wise,Attached
+EEGEncoder,2025,TCN+Transformer (DSTS),86.46,0.82,N/A,Session-wise,Attached
+MSCFormer,2025,Multi-scale Conv+Transformer,82.95,0.77,88.00,5-fold CV,Attached
+BrainGridNet,2025,Two-branch Depthwise CNN,80.26,0.75,N/A,10-fold CV,Attached
+ATCNet,2022,Attention TCN,85.38,0.80,N/A,Session-wise,Baseline
+SATrans-Net,2025,DSC + Top-K Sparse Att Transformer,84.72,N/R,89.76,Cross-session,Web Research
+Transformer-GCN,2025,Transformer + GCN (PCC/COH/PLV),82.9,N/R,N/A,Subject-level,Web Research
+DB-BISAN,2025,Dual-Branch Block Self-Attention,~83,N/R,N/R,Subject-dependent,Web Research
+GAT-GRU-Transformer,2025,GAT+GRU+Transformer+1D CNN,55.76*,N/R,N/A,Subject-dependent,Web Research
+NeuroLM,2025,LLM Foundation Model (ICLR),Multi-task,N/R,N/A,Multi-task,Web Research
+LLM-EEG (LDA),2025,LDA+CSP+Std,52.20,0.36,N/A,5-fold CV,This work
+LLM-EEG (LDA),2025,LDA+CSP+APA+DVA,50.15,0.34,N/A,5-fold CV,This work
+LLM-EEG (SVM),2025,SVM+CSP+Std,43.18,0.24,N/A,5-fold CV,This work
+LLM-EEG (SVM),2025,SVM+CSP+APA+DVA,41.52,0.22,N/A,5-fold CV,This work
+LLM-EEG (EEGNet),2025,EEGNET+Std,54.07,0.39,N/A,5-fold CV,This work
+LLM-EEG (EEGNet),2025,EEGNET+APA+DVA,53.85,0.38,N/A,5-fold CV,This work
+LLM-EEG (ATCNet),2025,ATCNET+Std,52.20,0.36,N/A,5-fold CV,This work
+LLM-EEG (ATCNet),2025,ATCNET+APA+DVA,52.05,0.36,N/A,5-fold CV,This work
+LLM-EEG (EEGConformer),2025,EEGCONFORMER+Std,52.94,0.37,N/A,5-fold CV,This work
+LLM-EEG (EEGConformer),2025,EEGCONFORMER+APA+DVA,53.07,0.37,N/A,5-fold CV,This work
+LLM-EEG (EEGTCNet),2025,EEGTCNET+Std,46.34,0.28,N/A,5-fold CV,This work
+LLM-EEG (EEGTCNet),2025,EEGTCNET+APA+DVA,46.97,0.29,N/A,5-fold CV,This work
+LLM-EEG (CTNet),2025,CTNET+Std,55.49,0.41,N/A,5-fold CV,This work
+LLM-EEG (CTNet),2025,CTNET+APA+DVA,54.10,0.39,N/A,5-fold CV,This work
+LLM-EEG (MSCFormer),2025,MSCFORMER+Std,56.37,0.42,N/A,5-fold CV,This work
+LLM-EEG (MSCFormer),2025,MSCFORMER+APA+DVA,56.99,0.43,N/A,5-fold CV,This work
