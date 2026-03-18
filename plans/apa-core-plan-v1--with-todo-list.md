@@ -1762,24 +1762,24 @@ The plan is already fully aligned with all 5 feedback points. Specifically, the 
 
 ## Phase 0: Pre-Implementation Setup
 
-- [x] **0.1** Create a new Google Colab notebook titled `APA_Core_v1.ipynb`
-- [x] **0.2** Set Colab runtime to GPU (preferably A100 if available, T4 as fallback)
-- [x] **0.3** Obtain BCI Competition IV-2a dataset files (`A01T.mat` through `A09E.mat`, 18 files total) from https://bnci-horizon-2020.eu/database/data-sets
-- [x] **0.4** Obtain evaluation session label sidecar files from https://www.bbci.de/competition/iv/results/ (needed if `.mat` eval files lack embedded labels)
-- [x] **0.5** Upload all 18 `.mat` files (and any sidecar `.txt` label files) to Google Drive at `MyDrive/LLM-EEG/data/`
-- [x] **0.6** Create the output directory `MyDrive/LLM-EEG/results/apa_core/` on Google Drive
-- [x] **0.7** Verify Google Drive folder structure matches expected paths (`LLM-EEG/data/`, `LLM-EEG/results/apa_core/`)
+- [ ] **0.1** Create a new Google Colab notebook titled `APA_Core_v1.ipynb`
+- [ ] **0.2** Set Colab runtime to GPU (preferably A100 if available, T4 as fallback)
+- [ ] **0.3** Obtain BCI Competition IV-2a dataset files (`A01T.mat` through `A09E.mat`, 18 files total) from https://bnci-horizon-2020.eu/database/data-sets
+- [ ] **0.4** Obtain evaluation session label sidecar files from https://www.bbci.de/competition/iv/results/ (needed if `.mat` eval files lack embedded labels)
+- [ ] **0.5** Upload all 18 `.mat` files (and any sidecar `.txt` label files) to Google Drive at `MyDrive/LLM-EEG/data/`
+- [ ] **0.6** Create the output directory `MyDrive/LLM-EEG/results/apa_core/` on Google Drive
+- [ ] **0.7** Verify Google Drive folder structure matches expected paths (`LLM-EEG/data/`, `LLM-EEG/results/apa_core/`)
 
 ------
 
 ## Phase 1: Section 1 — Introduction & Scope
 
-- [x] **1.1** Write the markdown cell framing APA-Core (four components: EA, augmentation, cosine LR, top-k checkpoint averaging)
-- [x] **1.2** Document the model (ATCNet), dataset (BCI IV-2a), and evaluation protocol (session-wise train-on-T test-on-E)
-- [x] **1.3** Document the comparison design (controlled_baseline vs apacore, 5 seeds × 9 subjects)
-- [x] **1.4** Document the statistical test (one-sided Wilcoxon signed-rank on per-subject mean accuracies)
-- [x] **1.5** Include the MI window caveat: this notebook uses [2.0s, 6.0s] = 1000 samples; ATCNet’s original paper uses [1.5s, 6.0s] = 1125 samples; direct comparison is approximate
-- [x] **1.6** Document v1 scope boundaries: DL-first (ATCNet only), no ML classifiers, no DVA, no LLM explainability; trial-level `y_proba` saved as future hook
+- [ ] **1.1** Write the markdown cell framing APA-Core (four components: EA, augmentation, cosine LR, top-k checkpoint averaging)
+- [ ] **1.2** Document the model (ATCNet), dataset (BCI IV-2a), and evaluation protocol (session-wise train-on-T test-on-E)
+- [ ] **1.3** Document the comparison design (controlled_baseline vs apacore, 5 seeds × 9 subjects)
+- [ ] **1.4** Document the statistical test (one-sided Wilcoxon signed-rank on per-subject mean accuracies)
+- [ ] **1.5** Include the MI window caveat: this notebook uses [2.0s, 6.0s] = 1000 samples; ATCNet’s original paper uses [1.5s, 6.0s] = 1125 samples; direct comparison is approximate
+- [ ] **1.6** Document v1 scope boundaries: DL-first (ATCNet only), no ML classifiers, no DVA, no LLM explainability; trial-level `y_proba` saved as future hook
 
 ------
 
@@ -1787,70 +1787,70 @@ The plan is already fully aligned with all 5 feedback points. Specifically, the 
 
 ### Cell 2a — Dependencies & Paths
 
-- [x] **2.1** Write Colab detection logic (`'google.colab' in sys.modules`)
-- [x] **2.2** Write `pip install` command for all dependencies: `torch`, `numpy`, `scipy`, `scikit-learn`, `matplotlib`, `seaborn`, `pandas`, `braindecode`, `einops`
-- [x] **2.3** Write PyTorch/CUDA detection and GPU info printout (device name, memory)
-- [x] **2.4** Write warning message for no-GPU case
-- [x] **2.5** Write path setup: Colab branch (Drive mount, `LLM-EEG/data/`, `LLM-EEG/results/apa_core/`) and local branch (`data/`, `results/`)
-- [x] **2.6** Write `os.makedirs` calls for `DATA_DIR` and `RESULTS_DIR`
-- [x] **2.7** Write data file existence check loop (all 18 files: `A0{1-9}{T,E}.mat`)
-- [x] **2.8** Write missing file error messaging with download URLs
-- [x] **2.9** Write special case detection: training files present but evaluation files missing (with sidecar label hint)
-- [x] **2.10** Write success message when all 18 files are found
-- [x] **2.11** Test Cell 2a runs cleanly on Colab with GPU
+- [ ] **2.1** Write Colab detection logic (`'google.colab' in sys.modules`)
+- [ ] **2.2** Write `pip install` command for all dependencies: `torch`, `numpy`, `scipy`, `scikit-learn`, `matplotlib`, `seaborn`, `pandas`, `braindecode`, `einops`
+- [ ] **2.3** Write PyTorch/CUDA detection and GPU info printout (device name, memory)
+- [ ] **2.4** Write warning message for no-GPU case
+- [ ] **2.5** Write path setup: Colab branch (Drive mount, `LLM-EEG/data/`, `LLM-EEG/results/apa_core/`) and local branch (`data/`, `results/`)
+- [ ] **2.6** Write `os.makedirs` calls for `DATA_DIR` and `RESULTS_DIR`
+- [ ] **2.7** Write data file existence check loop (all 18 files: `A0{1-9}{T,E}.mat`)
+- [ ] **2.8** Write missing file error messaging with download URLs
+- [ ] **2.9** Write special case detection: training files present but evaluation files missing (with sidecar label hint)
+- [ ] **2.10** Write success message when all 18 files are found
+- [ ] **2.11** Test Cell 2a runs cleanly on Colab with GPU
 
 ### Cell 2b — Imports & Constants
 
-- [x] **2.12** Write all import statements (numpy, pandas, matplotlib, seaborn, [scipy.io](http://scipy.io/), scipy.signal, scipy.stats.wilcoxon, sklearn, abc, dataclasses, typing, datetime, json, time, copy, random, tempfile, traceback, inspect, platform, torch, torch.nn, torch.optim, torch.utils.data, torch.optim.lr_scheduler)
-- [x] **2.13** Configure matplotlib style (`seaborn-v0_8-whitegrid`) and `rcParams` (figure size, DPI, font sizes, line width, save settings)
-- [x] **2.14** Define `COLORS` dict for mode-based plot coloring (controlled_baseline, apacore, ablate)
-- [x] **2.15** Define global constants: `DEVICE`, `SUBJECTS` (1–9), `SEEDS` ([42, 123, 456, 789, 1024]), `N_REQUIRED_SEEDS`
-- [x] **2.16** Define `CHANNEL_NAMES_22` (all 22 channel names in correct order)
-- [x] **2.17** Define `N_CLASSES` (4), `CLASS_NAMES` (Left Hand, Right Hand, Feet, Tongue), `FS` (250)
-- [x] **2.18** Print device, subjects, seeds confirmation
-- [x] **2.19** Test Cell 2b runs without import errors
+- [ ] **2.12** Write all import statements (numpy, pandas, matplotlib, seaborn, [scipy.io](http://scipy.io/), scipy.signal, scipy.stats.wilcoxon, sklearn, abc, dataclasses, typing, datetime, json, time, copy, random, tempfile, traceback, inspect, platform, torch, torch.nn, torch.optim, torch.utils.data, torch.optim.lr_scheduler)
+- [ ] **2.13** Configure matplotlib style (`seaborn-v0_8-whitegrid`) and `rcParams` (figure size, DPI, font sizes, line width, save settings)
+- [ ] **2.14** Define `COLORS` dict for mode-based plot coloring (controlled_baseline, apacore, ablate)
+- [ ] **2.15** Define global constants: `DEVICE`, `SUBJECTS` (1–9), `SEEDS` ([42, 123, 456, 789, 1024]), `N_REQUIRED_SEEDS`
+- [ ] **2.16** Define `CHANNEL_NAMES_22` (all 22 channel names in correct order)
+- [ ] **2.17** Define `N_CLASSES` (4), `CLASS_NAMES` (Left Hand, Right Hand, Feet, Tongue), `FS` (250)
+- [ ] **2.18** Print device, subjects, seeds confirmation
+- [ ] **2.19** Test Cell 2b runs without import errors
 
 ------
 
 ## Phase 3: Section 3 — Configuration & Registries
 
-- [x] **3.1** Implement `Config` as a frozen dataclass with all fields: `data_dir`, `output_dir`, `eval_labels_path`, `drop_artifacts`, `t_start` (2.0), `t_end` (6.0), `normalize` (“train_channel_zscore”), `val_run_id` (6), `stratified_val_frac` (0.2), `ea_shrinkage` (0.01), `ea_eig_floor` (1e-6), `aug_noise_std_frac` (0.05), `aug_scale_range` ((0.9, 1.1)), `aug_jitter_max` (10), `lr_eta_min` (1e-6), `topk` (3), `min_epoch_gap` (5), `checkpoint_metric` (“accuracy”), `seed` (42), `fail_fast` (False), `save_trial_outputs` (False), `save_training_history` (False)
-- [x] **3.2** Implement `Config` computed properties: `n_times`, `mi_start_sample`, `mi_end_sample`
-- [x] **3.3** Verify `Config.n_times` returns 1000 for [2.0s, 6.0s] at 250 Hz
-- [x] **3.4** Implement `ModeFlags` as a frozen dataclass with fields: `use_ea`, `use_aug`, `use_cosine`, `use_topk`
-- [x] **3.5** Implement `MODE_REGISTRY` dict with all 6 modes: `controlled_baseline`, `apacore`, `ablate_no_ea`, `ablate_no_aug`, `ablate_no_cosine`, `ablate_no_topk`
-- [x] **3.6** Verify each mode’s flag combination is correct (e.g., controlled_baseline is all False, apacore is all True, each ablation disables exactly one)
-- [x] **3.7** Define `_RESUME_EXEMPT_FIELDS` set: `output_dir`, `fail_fast`, `seed`, `save_training_history`, `save_trial_outputs`
-- [x] **3.8** Create `CONFIG` instance with `data_dir=DATA_DIR`, `output_dir=RESULTS_DIR`
-- [x] **3.9** Print confirmation of `n_times`, MI window, and available modes
-- [x] **3.10** Test that `Config` is truly frozen (attempting to set an attribute raises `FrozenInstanceError`)
+- [ ] **3.1** Implement `Config` as a frozen dataclass with all fields: `data_dir`, `output_dir`, `eval_labels_path`, `drop_artifacts`, `t_start` (2.0), `t_end` (6.0), `normalize` (“train_channel_zscore”), `val_run_id` (6), `stratified_val_frac` (0.2), `ea_shrinkage` (0.01), `ea_eig_floor` (1e-6), `aug_noise_std_frac` (0.05), `aug_scale_range` ((0.9, 1.1)), `aug_jitter_max` (10), `lr_eta_min` (1e-6), `topk` (3), `min_epoch_gap` (5), `checkpoint_metric` (“accuracy”), `seed` (42), `fail_fast` (False), `save_trial_outputs` (False), `save_training_history` (False)
+- [ ] **3.2** Implement `Config` computed properties: `n_times`, `mi_start_sample`, `mi_end_sample`
+- [ ] **3.3** Verify `Config.n_times` returns 1000 for [2.0s, 6.0s] at 250 Hz
+- [ ] **3.4** Implement `ModeFlags` as a frozen dataclass with fields: `use_ea`, `use_aug`, `use_cosine`, `use_topk`
+- [ ] **3.5** Implement `MODE_REGISTRY` dict with all 6 modes: `controlled_baseline`, `apacore`, `ablate_no_ea`, `ablate_no_aug`, `ablate_no_cosine`, `ablate_no_topk`
+- [ ] **3.6** Verify each mode’s flag combination is correct (e.g., controlled_baseline is all False, apacore is all True, each ablation disables exactly one)
+- [ ] **3.7** Define `_RESUME_EXEMPT_FIELDS` set: `output_dir`, `fail_fast`, `seed`, `save_training_history`, `save_trial_outputs`
+- [ ] **3.8** Create `CONFIG` instance with `data_dir=DATA_DIR`, `output_dir=RESULTS_DIR`
+- [ ] **3.9** Print confirmation of `n_times`, MI window, and available modes
+- [ ] **3.10** Test that `Config` is truly frozen (attempting to set an attribute raises `FrozenInstanceError`)
 
 ------
 
 ## Phase 4: Section 4 — Data Loader
 
-- [x] **4.1** Implement `_safe_int_set(arr)` — converts array values to int set, returns `None` if NaN/Inf present
-- [x] **4.2** Implement `_labels_available(a_y_raw, n_trials)` — checks if labels are valid class labels (1–4), NaN-safe
-- [x] **4.3** Implement `_describe_labels(a_y_raw, n_trials)` — safely describes label values for error messages
-- [x] **4.4** Implement `_resolve_sidecar_labels(subject_id, session, config, expected_n)` — loads sidecar `.txt` label file with `{subject}` template support and size validation
-- [x] **4.5** Implement `load_bci2a_session(subject_id, session, config)` — main loader function:
-  - [x] **4.5.1** File path construction and existence check
-  - [x] **4.5.2** `scipy.io.loadmat` with `squeeze_me=False`
-  - [x] **4.5.3** Iterate over runs in `a_data` array
-  - [x] **4.5.4** Extract signal `a_X`, trial onsets `a_trial`, raw labels `a_y_raw`, artifacts `a_artifacts` from nested MATLAB struct
-  - [x] **4.5.5** Count total expected trials across all runs (for sidecar validation)
-  - [x] **4.5.6** Per-run: check if labels are available in `.mat`; if not, attempt sidecar resolution
-  - [x] **4.5.7** Per-trial: apply artifact rejection if `config.drop_artifacts` is True
-  - [x] **4.5.8** Per-trial: extract MI window `[onset + mi_start_sample : onset + mi_end_sample]`, take first 22 channels, transpose to (22, n_times)
-  - [x] **4.5.9** Per-trial: convert 1-indexed labels to 0-indexed
-  - [x] **4.5.10** Handle sidecar global indexing correctly (sum of preceding run trial counts + local index)
-  - [x] **4.5.11** Boundary check: skip trials where `onset + mi_end_sample > signal length`
-  - [x] **4.5.12** Stack results, cast to correct dtypes (`float32` for X, `int64` for y and run_ids)
-  - [x] **4.5.13** Return `(X, y, run_ids, raw_runs)` where `raw_runs` is `list of (signal, onsets)` per run
-- [x] **4.6** Write quick loader test: load S01T, verify shape, classes, run IDs, then delete
-- [x] **4.7** Test loader on all 18 files (9 subjects × 2 sessions) to confirm no crashes
-- [x] **4.8** Verify that artifact-rejected trial counts are reasonable (typically 268–288 trials per session out of 288 max)
-- [x] **4.9** Verify label distributions are approximately balanced (72 per class per session, minus artifacts)
+- [ ] **4.1** Implement `_safe_int_set(arr)` — converts array values to int set, returns `None` if NaN/Inf present
+- [ ] **4.2** Implement `_labels_available(a_y_raw, n_trials)` — checks if labels are valid class labels (1–4), NaN-safe
+- [ ] **4.3** Implement `_describe_labels(a_y_raw, n_trials)` — safely describes label values for error messages
+- [ ] **4.4** Implement `_resolve_sidecar_labels(subject_id, session, config, expected_n)` — loads sidecar `.txt` label file with `{subject}` template support and size validation
+- [ ] **4.5** Implement `load_bci2a_session(subject_id, session, config)` — main loader function:
+  - [ ] **4.5.1** File path construction and existence check
+  - [ ] **4.5.2** `scipy.io.loadmat` with `squeeze_me=False`
+  - [ ] **4.5.3** Iterate over runs in `a_data` array
+  - [ ] **4.5.4** Extract signal `a_X`, trial onsets `a_trial`, raw labels `a_y_raw`, artifacts `a_artifacts` from nested MATLAB struct
+  - [ ] **4.5.5** Count total expected trials across all runs (for sidecar validation)
+  - [ ] **4.5.6** Per-run: check if labels are available in `.mat`; if not, attempt sidecar resolution
+  - [ ] **4.5.7** Per-trial: apply artifact rejection if `config.drop_artifacts` is True
+  - [ ] **4.5.8** Per-trial: extract MI window `[onset + mi_start_sample : onset + mi_end_sample]`, take first 22 channels, transpose to (22, n_times)
+  - [ ] **4.5.9** Per-trial: convert 1-indexed labels to 0-indexed
+  - [ ] **4.5.10** Handle sidecar global indexing correctly (sum of preceding run trial counts + local index)
+  - [ ] **4.5.11** Boundary check: skip trials where `onset + mi_end_sample > signal length`
+  - [ ] **4.5.12** Stack results, cast to correct dtypes (`float32` for X, `int64` for y and run_ids)
+  - [ ] **4.5.13** Return `(X, y, run_ids, raw_runs)` where `raw_runs` is `list of (signal, onsets)` per run
+- [ ] **4.6** Write quick loader test: load S01T, verify shape, classes, run IDs, then delete
+- [ ] **4.7** Test loader on all 18 files (9 subjects × 2 sessions) to confirm no crashes
+- [ ] **4.8** Verify that artifact-rejected trial counts are reasonable (typically 268–288 trials per session out of 288 max)
+- [ ] **4.9** Verify label distributions are approximately balanced (72 per class per session, minus artifacts)
 
 ------
 
@@ -1858,34 +1858,34 @@ The plan is already fully aligned with all 5 feedback points. Specifically, the 
 
 ### Cell 5a — Shape & Distribution Checks
 
-- [x] **5.1** Load S01T via `load_bci2a_session`
-- [x] **5.2** Print X shape, y shape, class counts, run IDs and their counts, MI window, channels, sampling rate
-- [x] **5.3** Assert X has 22 channels
-- [x] **5.4** Assert X has `Config.n_times` (1000) time samples
-- [x] **5.5** Assert labels are a subset of {0, 1, 2, 3}
-- [x] **5.6** Print verification success message
+- [ ] **5.1** Load S01T via `load_bci2a_session`
+- [ ] **5.2** Print X shape, y shape, class counts, run IDs and their counts, MI window, channels, sampling rate
+- [ ] **5.3** Assert X has 22 channels
+- [ ] **5.4** Assert X has `Config.n_times` (1000) time samples
+- [ ] **5.5** Assert labels are a subset of {0, 1, 2, 3}
+- [ ] **5.6** Print verification success message
 
 ### Cell 5b — Onset Verification Plot
 
-- [x] **5.7** Extract first run’s raw signal and onsets from `raw_runs`
-- [x] **5.8** Plot 3 trials from run 1 at Cz (channel index 9)
-- [x] **5.9** Mark trial onset with green vertical line
-- [x] **5.10** Mark MI window start and end with red dashed vertical lines
-- [x] **5.11** Add red shading over the MI extraction window
-- [x] **5.12** Add legend, axis labels, and suptitle
-- [x] **5.13** Save plot to `RESULTS_DIR/verify_onsets_S01.png`
-- [x] **5.14** Print verification instruction for visual inspection
+- [ ] **5.7** Extract first run’s raw signal and onsets from `raw_runs`
+- [ ] **5.8** Plot 3 trials from run 1 at Cz (channel index 9)
+- [ ] **5.9** Mark trial onset with green vertical line
+- [ ] **5.10** Mark MI window start and end with red dashed vertical lines
+- [ ] **5.11** Add red shading over the MI extraction window
+- [ ] **5.12** Add legend, axis labels, and suptitle
+- [ ] **5.13** Save plot to `RESULTS_DIR/verify_onsets_S01.png`
+- [ ] **5.14** Print verification instruction for visual inspection
 
 ### Cell 5c — Raw EEG & PSD Exploration
 
-- [x] **5.15** Create 2×2 subplot figure
-- [x] **5.16** Subplot (a): Plot raw EEG trial 1 for C3, C4, Cz, Fz with vertical offsets
-- [x] **5.17** Subplot (b): Compute and plot PSD (Welch) at C3 by class (log scale), with alpha (8–12 Hz) and beta (12–30 Hz) band shading
-- [x] **5.18** Subplot ©: Bar chart of class distribution (counts per class)
-- [x] **5.19** Subplot (d): Horizontal bar chart of per-channel variance for trial 1
-- [x] **5.20** Add suptitle, tight layout
-- [x] **5.21** Save to `RESULTS_DIR/data_exploration.png`
-- [x] **5.22** Delete demo variables (`X_demo`, `y_demo`, `run_ids_demo`, `raw_runs_demo`) to free memory
+- [ ] **5.15** Create 2×2 subplot figure
+- [ ] **5.16** Subplot (a): Plot raw EEG trial 1 for C3, C4, Cz, Fz with vertical offsets
+- [ ] **5.17** Subplot (b): Compute and plot PSD (Welch) at C3 by class (log scale), with alpha (8–12 Hz) and beta (12–30 Hz) band shading
+- [ ] **5.18** Subplot ©: Bar chart of class distribution (counts per class)
+- [ ] **5.19** Subplot (d): Horizontal bar chart of per-channel variance for trial 1
+- [ ] **5.20** Add suptitle, tight layout
+- [ ] **5.21** Save to `RESULTS_DIR/data_exploration.png`
+- [ ] **5.22** Delete demo variables (`X_demo`, `y_demo`, `run_ids_demo`, `raw_runs_demo`) to free memory
 
 ------
 
@@ -1893,80 +1893,80 @@ The plan is already fully aligned with all 5 feedback points. Specifically, the 
 
 ### 6.1 — Split
 
-- [x] **6.1.1** Implement `smart_split(X, y, run_ids, config)` — run-based val split using `config.val_run_id`
-- [x] **6.1.2** Implement stratified fallback when `run_ids` is None or only 1 unique run
-- [x] **6.1.3** Test that run-6 holdout produces ~48 validation trials for S01T
-- [x] **6.1.4** Test that stratified fallback produces correct val fraction with class balance
+- [ ] **6.1.1** Implement `smart_split(X, y, run_ids, config)` — run-based val split using `config.val_run_id`
+- [ ] **6.1.2** Implement stratified fallback when `run_ids` is None or only 1 unique run
+- [ ] **6.1.3** Test that run-6 holdout produces ~48 validation trials for S01T
+- [ ] **6.1.4** Test that stratified fallback produces correct val fraction with class balance
 
 ### 6.2 — Euclidean Alignment
 
-- [x] **6.2.1** Implement `DiagonalShrinkageEA.__init__` with `shrinkage` and `eig_floor` params
-- [x] **6.2.2** Implement `DiagonalShrinkageEA.fit(X)` — compute mean covariance matrix across trials, apply diagonal shrinkage regularization, compute whitening matrix via eigendecomposition
-- [x] **6.2.3** Implement `DiagonalShrinkageEA.transform(X)` — apply whitening matrix `W_` to each trial
-- [x] **6.2.4** Ensure `transform()` raises `RuntimeError` if called before `fit()`
-- [x] **6.2.5** Test EA on S01T: verify output shape unchanged, verify covariance is approximately identity after transform
+- [ ] **6.2.1** Implement `DiagonalShrinkageEA.__init__` with `shrinkage` and `eig_floor` params
+- [ ] **6.2.2** Implement `DiagonalShrinkageEA.fit(X)` — compute mean covariance matrix across trials, apply diagonal shrinkage regularization, compute whitening matrix via eigendecomposition
+- [ ] **6.2.3** Implement `DiagonalShrinkageEA.transform(X)` — apply whitening matrix `W_` to each trial
+- [ ] **6.2.4** Ensure `transform()` raises `RuntimeError` if called before `fit()`
+- [ ] **6.2.5** Test EA on S01T: verify output shape unchanged, verify covariance is approximately identity after transform
 
 ### 6.3 — Normalization
 
-- [x] **6.3.1** Implement `apply_train_channel_zscore(X_train, X_val, X_test)` — fit `StandardScaler` per channel on `X_train`, transform all splits
-- [x] **6.3.2** Ensure the function copies arrays (no in-place mutation of inputs)
-- [x] **6.3.3** Handle `X_val is None` case
-- [x] **6.3.4** Test: after normalization, train channels should have approximately zero mean and unit variance
+- [ ] **6.3.1** Implement `apply_train_channel_zscore(X_train, X_val, X_test)` — fit `StandardScaler` per channel on `X_train`, transform all splits
+- [ ] **6.3.2** Ensure the function copies arrays (no in-place mutation of inputs)
+- [ ] **6.3.3** Handle `X_val is None` case
+- [ ] **6.3.4** Test: after normalization, train channels should have approximately zero mean and unit variance
 
 ### 6.4 — Mild Augmenter
 
-- [x] **6.4.1** Implement `MildAugmenter.__init__` with `noise_std_frac`, `scale_range`, `jitter_max`
-- [x] **6.4.2** Implement `MildAugmenter.__call__(X)` for batch-level torch tensor augmentation:
-  - [x] **6.4.2a** Gaussian noise: per-channel std scaled by `noise_std_frac`
-  - [x] **6.4.2b** Amplitude scaling: uniform random per-trial from `scale_range`
-  - [x] **6.4.2c** Temporal jitter: random integer shift per-trial from `[-jitter_max, jitter_max]`, zero-pad edges
-- [x] **6.4.3** Test augmenter on a dummy batch: verify output shape matches input, verify values are perturbed but within reasonable range
+- [ ] **6.4.1** Implement `MildAugmenter.__init__` with `noise_std_frac`, `scale_range`, `jitter_max`
+- [ ] **6.4.2** Implement `MildAugmenter.__call__(X)` for batch-level torch tensor augmentation:
+  - [ ] **6.4.2a** Gaussian noise: per-channel std scaled by `noise_std_frac`
+  - [ ] **6.4.2b** Amplitude scaling: uniform random per-trial from `scale_range`
+  - [ ] **6.4.2c** Temporal jitter: random integer shift per-trial from `[-jitter_max, jitter_max]`, zero-pad edges
+- [ ] **6.4.3** Test augmenter on a dummy batch: verify output shape matches input, verify values are perturbed but within reasonable range
 
 ### 6.5 — Checkpoint Manager
 
-- [x] **6.5.1** Implement `_CkptEntry` class with `epoch`, `val_metric`, `state_dict`
-- [x] **6.5.2** Implement `CheckpointManager.__init__` with `topk` and `min_epoch_gap`
-- [x] **6.5.3** Implement `CheckpointManager.update(epoch, val_metric, model)`:
-  - [x] **6.5.3a** Rejection logic: skip if within gap of a better existing entry
-  - [x] **6.5.3b** Replacement logic: remove worse entries within gap
-  - [x] **6.5.3c** Store `state_dict` as detached CPU clones
-  - [x] **6.5.3d** Sort by metric descending, trim to top-k
-- [x] **6.5.4** Implement `CheckpointManager.best_state_dict()` — return highest metric entry
-- [x] **6.5.5** Implement `CheckpointManager.average_predictions(model, X_tensor, device, batch_size, reshape_fn, extract_fn)` — load each checkpoint, run inference, average probabilities
-- [x] **6.5.6** Test checkpoint manager: update with synthetic metrics, verify top-k ordering and gap enforcement
+- [ ] **6.5.1** Implement `_CkptEntry` class with `epoch`, `val_metric`, `state_dict`
+- [ ] **6.5.2** Implement `CheckpointManager.__init__` with `topk` and `min_epoch_gap`
+- [ ] **6.5.3** Implement `CheckpointManager.update(epoch, val_metric, model)`:
+  - [ ] **6.5.3a** Rejection logic: skip if within gap of a better existing entry
+  - [ ] **6.5.3b** Replacement logic: remove worse entries within gap
+  - [ ] **6.5.3c** Store `state_dict` as detached CPU clones
+  - [ ] **6.5.3d** Sort by metric descending, trim to top-k
+- [ ] **6.5.4** Implement `CheckpointManager.best_state_dict()` — return highest metric entry
+- [ ] **6.5.5** Implement `CheckpointManager.average_predictions(model, X_tensor, device, batch_size, reshape_fn, extract_fn)` — load each checkpoint, run inference, average probabilities
+- [ ] **6.5.6** Test checkpoint manager: update with synthetic metrics, verify top-k ordering and gap enforcement
 
 ### 6.6 — Helper Functions
 
-- [x] **6.6.1** Implement `_batched_predict(model, X, device, batch_size, reshape_fn, extract_fn)` — batch-wise inference with softmax, returns numpy probability array
-- [x] **6.6.2** Implement `accuracy(y_true, y_pred)` — simple mean accuracy
-- [x] **6.6.3** Implement `cohen_kappa(y_true, y_pred, n_classes=4)` — manual implementation (no sklearn dependency for this metric)
-- [x] **6.6.4** Implement `confusion_matrix_4class(y_true, y_pred)` — return 4×4 matrix as nested list
-- [x] **6.6.5** Test all three metrics on known inputs with known expected outputs
+- [ ] **6.6.1** Implement `_batched_predict(model, X, device, batch_size, reshape_fn, extract_fn)` — batch-wise inference with softmax, returns numpy probability array
+- [ ] **6.6.2** Implement `accuracy(y_true, y_pred)` — simple mean accuracy
+- [ ] **6.6.3** Implement `cohen_kappa(y_true, y_pred, n_classes=4)` — manual implementation (no sklearn dependency for this metric)
+- [ ] **6.6.4** Implement `confusion_matrix_4class(y_true, y_pred)` — return 4×4 matrix as nested list
+- [ ] **6.6.5** Test all three metrics on known inputs with known expected outputs
 
 ### Cell-Level
 
-- [x] **6.7** Print confirmation message listing all loaded components
-- [x] **6.8** Verify the entire Section 6 cell runs without error
+- [ ] **6.7** Print confirmation message listing all loaded components
+- [ ] **6.8** Verify the entire Section 6 cell runs without error
 
 ------
 
 ## Phase 7: Section 7 — Model Specs & Registry
 
-- [x] **7.1** Implement `ModelSpec` ABC with abstract methods `build_model` and `default_train_params`, and concrete methods `reshape_input` (identity) and `extract_logits` (identity)
-- [x] **7.2** Add `name`, `family`, `feature_pipeline` class attributes to `ModelSpec`
-- [x] **7.3** Implement `ATCNetSpec(ModelSpec)`:
-  - [x] **7.3.1** Set `name = "ATCNet"`
-  - [x] **7.3.2** Implement `build_model` with braindecode `ATCNet` constructor signature detection (`n_times` vs `input_window_seconds` parameter)
-  - [x] **7.3.3** Implement `default_train_params` returning `epochs=500, lr=9e-4, batch_size=64, weight_decay=0.0`
-- [x] **7.4** Create `MODEL_REGISTRY` dict with `'atcnet': ATCNetSpec()`
-- [x] **7.5** Add commented placeholders for future models (EEGConformer, MSCFormer, CLTNet)
-- [x] **7.6** Write ATCNet build verification:
-  - [x] **7.6.1** Build model with `n_classes=4, n_channels=22, n_times=1000`
-  - [x] **7.6.2** Count and print parameters
-  - [x] **7.6.3** Forward pass with dummy input `(2, 22, 1000)`
-  - [x] **7.6.4** Assert output shape is `(2, 4)`
-  - [x] **7.6.5** Clean up test objects
-- [x] **7.7** Test that braindecode’s ATCNet version is compatible (handle potential API changes)
+- [ ] **7.1** Implement `ModelSpec` ABC with abstract methods `build_model` and `default_train_params`, and concrete methods `reshape_input` (identity) and `extract_logits` (identity)
+- [ ] **7.2** Add `name`, `family`, `feature_pipeline` class attributes to `ModelSpec`
+- [ ] **7.3** Implement `ATCNetSpec(ModelSpec)`:
+  - [ ] **7.3.1** Set `name = "ATCNet"`
+  - [ ] **7.3.2** Implement `build_model` with braindecode `ATCNet` constructor signature detection (`n_times` vs `input_window_seconds` parameter)
+  - [ ] **7.3.3** Implement `default_train_params` returning `epochs=500, lr=9e-4, batch_size=64, weight_decay=0.0`
+- [ ] **7.4** Create `MODEL_REGISTRY` dict with `'atcnet': ATCNetSpec()`
+- [ ] **7.5** Add commented placeholders for future models (EEGConformer, MSCFormer, CLTNet)
+- [ ] **7.6** Write ATCNet build verification:
+  - [ ] **7.6.1** Build model with `n_classes=4, n_channels=22, n_times=1000`
+  - [ ] **7.6.2** Count and print parameters
+  - [ ] **7.6.3** Forward pass with dummy input `(2, 22, 1000)`
+  - [ ] **7.6.4** Assert output shape is `(2, 4)`
+  - [ ] **7.6.5** Clean up test objects
+- [ ] **7.7** Test that braindecode’s ATCNet version is compatible (handle potential API changes)
 
 ------
 
@@ -1974,68 +1974,68 @@ The plan is already fully aligned with all 5 feedback points. Specifically, the 
 
 ### Seeding
 
-- [x] **8.1** Implement `_seed_everything(seed)` — set seeds for `random`, `numpy`, `torch`, `torch.cuda`, set `cudnn.deterministic=True` and `cudnn.benchmark=False`
-- [x] **8.2** Implement `_seed_worker(worker_id)` — DataLoader worker seed function
+- [ ] **8.1** Implement `_seed_everything(seed)` — set seeds for `random`, `numpy`, `torch`, `torch.cuda`, set `cudnn.deterministic=True` and `cudnn.benchmark=False`
+- [ ] **8.2** Implement `_seed_worker(worker_id)` — DataLoader worker seed function
 
 ### Data Preparation
 
-- [x] **8.3** Implement `_prepare_data(subject_id, mode_flags, config)`:
-  - [x] **8.3.1** Load T session via `load_bci2a_session`
-  - [x] **8.3.2** Load E session via `load_bci2a_session`
-  - [x] **8.3.3** Split T session into train/val via `smart_split`
-  - [x] **8.3.4** Set E session as test
-  - [x] **8.3.5** Conditionally apply EA: fit on `X_train`, transform `X_train`, `X_val`, `X_test`
-  - [x] **8.3.6** Apply normalization: fit zscore on `X_train`, transform all three splits
-  - [x] **8.3.7** Verify preprocessing order: load → split → EA → zscore
-  - [x] **8.3.8** Return `(X_train, y_train, X_val, y_val, X_test, y_test)`
+- [ ] **8.3** Implement `_prepare_data(subject_id, mode_flags, config)`:
+  - [ ] **8.3.1** Load T session via `load_bci2a_session`
+  - [ ] **8.3.2** Load E session via `load_bci2a_session`
+  - [ ] **8.3.3** Split T session into train/val via `smart_split`
+  - [ ] **8.3.4** Set E session as test
+  - [ ] **8.3.5** Conditionally apply EA: fit on `X_train`, transform `X_train`, `X_val`, `X_test`
+  - [ ] **8.3.6** Apply normalization: fit zscore on `X_train`, transform all three splits
+  - [ ] **8.3.7** Verify preprocessing order: load → split → EA → zscore
+  - [ ] **8.3.8** Return `(X_train, y_train, X_val, y_val, X_test, y_test)`
 
 ### Training
 
-- [x] **8.4** Implement `_train_model(spec, X_train, y_train, X_val, y_val, mode_flags, config, device)`:
-  - [x] **8.4.1** Get default train params from spec
-  - [x] **8.4.2** Build model via `spec.build_model()`, move to device
-  - [x] **8.4.3** Create Adam optimizer with spec’s lr and weight_decay
-  - [x] **8.4.4** Conditionally create CosineAnnealingLR scheduler (if `mode_flags.use_cosine`)
-  - [x] **8.4.5** Create CrossEntropyLoss criterion
-  - [x] **8.4.6** Conditionally create `MildAugmenter` (if `mode_flags.use_aug`)
-  - [x] **8.4.7** Create `CheckpointManager` with config’s topk and min_epoch_gap
-  - [x] **8.4.8** Convert train/val arrays to torch tensors
-  - [x] **8.4.9** Create DataLoader with seeded generator and worker init function
-  - [x] **8.4.10** Training loop (500 epochs):
-    - [x] **8.4.10a** Set model to train mode
-    - [x] **8.4.10b** Iterate over batches: move to device, optionally augment, reshape input, forward pass, loss, backward, optimizer step
-    - [x] **8.4.10c** Step scheduler after each epoch (if exists)
-    - [x] **8.4.10d** Run validation every epoch via `_batched_predict`
-    - [x] **8.4.10e** Update checkpoint manager with validation metric
-    - [x] **8.4.10f** Optionally record training history (loss, val_acc)
-  - [x] **8.4.11** Record total training time
-  - [x] **8.4.12** Return `(model, ckpt, train_time, history)`
+- [ ] **8.4** Implement `_train_model(spec, X_train, y_train, X_val, y_val, mode_flags, config, device)`:
+  - [ ] **8.4.1** Get default train params from spec
+  - [ ] **8.4.2** Build model via `spec.build_model()`, move to device
+  - [ ] **8.4.3** Create Adam optimizer with spec’s lr and weight_decay
+  - [ ] **8.4.4** Conditionally create CosineAnnealingLR scheduler (if `mode_flags.use_cosine`)
+  - [ ] **8.4.5** Create CrossEntropyLoss criterion
+  - [ ] **8.4.6** Conditionally create `MildAugmenter` (if `mode_flags.use_aug`)
+  - [ ] **8.4.7** Create `CheckpointManager` with config’s topk and min_epoch_gap
+  - [ ] **8.4.8** Convert train/val arrays to torch tensors
+  - [ ] **8.4.9** Create DataLoader with seeded generator and worker init function
+  - [ ] **8.4.10** Training loop (500 epochs):
+    - [ ] **8.4.10a** Set model to train mode
+    - [ ] **8.4.10b** Iterate over batches: move to device, optionally augment, reshape input, forward pass, loss, backward, optimizer step
+    - [ ] **8.4.10c** Step scheduler after each epoch (if exists)
+    - [ ] **8.4.10d** Run validation every epoch via `_batched_predict`
+    - [ ] **8.4.10e** Update checkpoint manager with validation metric
+    - [ ] **8.4.10f** Optionally record training history (loss, val_acc)
+  - [ ] **8.4.11** Record total training time
+  - [ ] **8.4.12** Return `(model, ckpt, train_time, history)`
 
 ### Evaluation
 
-- [x] **8.5** Implement `_evaluate_model(spec, model, ckpt, X_test, y_test, mode_flags, config, device)`:
-  - [x] **8.5.1** Convert test data to torch tensor
-  - [x] **8.5.2** If `mode_flags.use_topk` and checkpoints exist: use `ckpt.average_predictions`
-  - [x] **8.5.3** Elif checkpoints exist: load best single checkpoint, run `_batched_predict`
-  - [x] **8.5.4** Else: use current model weights with `_batched_predict`
-  - [x] **8.5.5** Compute accuracy, kappa, confusion matrix
-  - [x] **8.5.6** Record inference time
-  - [x] **8.5.7** Return eval info dict with `accuracy`, `kappa`, `confusion_matrix`, `inference_time_sec`, `y_true`, `y_pred`, `y_proba`
+- [ ] **8.5** Implement `_evaluate_model(spec, model, ckpt, X_test, y_test, mode_flags, config, device)`:
+  - [ ] **8.5.1** Convert test data to torch tensor
+  - [ ] **8.5.2** If `mode_flags.use_topk` and checkpoints exist: use `ckpt.average_predictions`
+  - [ ] **8.5.3** Elif checkpoints exist: load best single checkpoint, run `_batched_predict`
+  - [ ] **8.5.4** Else: use current model weights with `_batched_predict`
+  - [ ] **8.5.5** Compute accuracy, kappa, confusion matrix
+  - [ ] **8.5.6** Record inference time
+  - [ ] **8.5.7** Return eval info dict with `accuracy`, `kappa`, `confusion_matrix`, `inference_time_sec`, `y_true`, `y_pred`, `y_proba`
 
 ### Orchestrator Entry Point
 
-- [x] **8.6** Implement `run_single(spec, subject_id, mode_name, config, device)`:
-  - [x] **8.6.1** Look up mode_flags from MODE_REGISTRY
-  - [x] **8.6.2** Call `_seed_everything`
-  - [x] **8.6.3** Call `_prepare_data`
-  - [x] **8.6.4** Call `_train_model`
-  - [x] **8.6.5** Call `_evaluate_model`
-  - [x] **8.6.6** Build result dict with all required fields: model, mode, subject, seed, accuracy, kappa, confusion_matrix, train_time_sec, inference_time_sec, n_train, n_val, n_test, status, error
-  - [x] **8.6.7** Conditionally build trial_outputs dict (y_true, y_pred, y_proba)
-  - [x] **8.6.8** Delete model and empty CUDA cache
-  - [x] **8.6.9** Return `(result, trial_outputs, history)`
-- [x] **8.7** Print confirmation message
-- [x] **8.8** Verify the entire Section 8 cell runs without error (no execution, just definition)
+- [ ] **8.6** Implement `run_single(spec, subject_id, mode_name, config, device)`:
+  - [ ] **8.6.1** Look up mode_flags from MODE_REGISTRY
+  - [ ] **8.6.2** Call `_seed_everything`
+  - [ ] **8.6.3** Call `_prepare_data`
+  - [ ] **8.6.4** Call `_train_model`
+  - [ ] **8.6.5** Call `_evaluate_model`
+  - [ ] **8.6.6** Build result dict with all required fields: model, mode, subject, seed, accuracy, kappa, confusion_matrix, train_time_sec, inference_time_sec, n_train, n_val, n_test, status, error
+  - [ ] **8.6.7** Conditionally build trial_outputs dict (y_true, y_pred, y_proba)
+  - [ ] **8.6.8** Delete model and empty CUDA cache
+  - [ ] **8.6.9** Return `(result, trial_outputs, history)`
+- [ ] **8.7** Print confirmation message
+- [ ] **8.8** Verify the entire Section 8 cell runs without error (no execution, just definition)
 
 ------
 
@@ -2043,45 +2043,45 @@ The plan is already fully aligned with all 5 feedback points. Specifically, the 
 
 ### Helper Functions
 
-- [x] **9.1** Implement `_make_run_key(mode, subject, seed)` — string key for deduplication
-- [x] **9.2** Implement `_build_completed_set(results_list)` — set of run keys with status ‘ok’
-- [x] **9.3** Implement `_generate_output_path(output_dir, model_name, tag)` — timestamped JSON path
-- [x] **9.4** Implement `_atomic_json_write(data, path)` — write to temp file, fsync, atomic rename via `os.replace`
-- [x] **9.5** Implement `_collect_metadata(model_name, modes, config, subjects, seeds)` — capture plan version, model, modes, subjects, seeds, full config dict (tuples as lists), timestamp, platform, Python version, torch version, device
+- [ ] **9.1** Implement `_make_run_key(mode, subject, seed)` — string key for deduplication
+- [ ] **9.2** Implement `_build_completed_set(results_list)` — set of run keys with status ‘ok’
+- [ ] **9.3** Implement `_generate_output_path(output_dir, model_name, tag)` — timestamped JSON path
+- [ ] **9.4** Implement `_atomic_json_write(data, path)` — write to temp file, fsync, atomic rename via `os.replace`
+- [ ] **9.5** Implement `_collect_metadata(model_name, modes, config, subjects, seeds)` — capture plan version, model, modes, subjects, seeds, full config dict (tuples as lists), timestamp, platform, Python version, torch version, device
 
 ### Resume Validation
 
-- [x] **9.6** Implement `_validate_resume_metadata(saved_meta, model_name, modes, config, subjects, seeds)`:
-  - [x] **9.6.1** Check model name match
-  - [x] **9.6.2** Check modes set match
-  - [x] **9.6.3** Check subjects set match
-  - [x] **9.6.4** Check seeds set match
-  - [x] **9.6.5** Field-by-field config comparison, skipping `_RESUME_EXEMPT_FIELDS`
-  - [x] **9.6.6** Handle tuple-to-list conversion for comparison
-  - [x] **9.6.7** Raise `ValueError` (not warning) on any mismatch, with all errors listed
+- [ ] **9.6** Implement `_validate_resume_metadata(saved_meta, model_name, modes, config, subjects, seeds)`:
+  - [ ] **9.6.1** Check model name match
+  - [ ] **9.6.2** Check modes set match
+  - [ ] **9.6.3** Check subjects set match
+  - [ ] **9.6.4** Check seeds set match
+  - [ ] **9.6.5** Field-by-field config comparison, skipping `_RESUME_EXEMPT_FIELDS`
+  - [ ] **9.6.6** Handle tuple-to-list conversion for comparison
+  - [ ] **9.6.7** Raise `ValueError` (not warning) on any mismatch, with all errors listed
 
 ### Main Runner
 
-- [x] **9.7** Implement `run_full_benchmark(spec, device, config, modes, subjects, seeds, resume_path, tag)`:
-  - [x] **9.7.1** Default subjects/seeds to global constants if None
-  - [x] **9.7.2** Create output directory
-  - [x] **9.7.3** Collect metadata
-  - [x] **9.7.4** Resume logic: load existing JSON, validate metadata, rebuild completed set, reuse output path
-  - [x] **9.7.5** Fresh run logic: generate new output path
-  - [x] **9.7.6** Triple-nested loop: modes → subjects → seeds
-  - [x] **9.7.7** Skip already-completed runs (check run key in completed set)
-  - [x] **9.7.8** Create per-run config via `replace(config, seed=seed)`
-  - [x] **9.7.9** Call `run_single` in try/except
-  - [x] **9.7.10** On success: append result, remove stale failure entry for this run, print progress
-  - [x] **9.7.11** On failure: append to failures list (with traceback), deduplicate failures by run key, print failure
-  - [x] **9.7.12** Respect `config.fail_fast` — re-raise on exception if True
-  - [x] **9.7.13** Atomic intermediate JSON save after every run (envelope with metadata, results, failures, last_updated)
-  - [x] **9.7.14** Accumulate trial outputs in dict for companion `.npz`
-  - [x] **9.7.15** After loop: save companion `.npz` if any trial outputs accumulated
-  - [x] **9.7.16** Print final save path
-  - [x] **9.7.17** Return `(all_results, failures, out_path)`
-- [x] **9.8** Print confirmation message
-- [x] **9.9** Verify the entire Section 9 cell runs without error (definition only)
+- [ ] **9.7** Implement `run_full_benchmark(spec, device, config, modes, subjects, seeds, resume_path, tag)`:
+  - [ ] **9.7.1** Default subjects/seeds to global constants if None
+  - [ ] **9.7.2** Create output directory
+  - [ ] **9.7.3** Collect metadata
+  - [ ] **9.7.4** Resume logic: load existing JSON, validate metadata, rebuild completed set, reuse output path
+  - [ ] **9.7.5** Fresh run logic: generate new output path
+  - [ ] **9.7.6** Triple-nested loop: modes → subjects → seeds
+  - [ ] **9.7.7** Skip already-completed runs (check run key in completed set)
+  - [ ] **9.7.8** Create per-run config via `replace(config, seed=seed)`
+  - [ ] **9.7.9** Call `run_single` in try/except
+  - [ ] **9.7.10** On success: append result, remove stale failure entry for this run, print progress
+  - [ ] **9.7.11** On failure: append to failures list (with traceback), deduplicate failures by run key, print failure
+  - [ ] **9.7.12** Respect `config.fail_fast` — re-raise on exception if True
+  - [ ] **9.7.13** Atomic intermediate JSON save after every run (envelope with metadata, results, failures, last_updated)
+  - [ ] **9.7.14** Accumulate trial outputs in dict for companion `.npz`
+  - [ ] **9.7.15** After loop: save companion `.npz` if any trial outputs accumulated
+  - [ ] **9.7.16** Print final save path
+  - [ ] **9.7.17** Return `(all_results, failures, out_path)`
+- [ ] **9.8** Print confirmation message
+- [ ] **9.9** Verify the entire Section 9 cell runs without error (definition only)
 
 ------
 
@@ -2089,32 +2089,32 @@ The plan is already fully aligned with all 5 feedback points. Specifically, the 
 
 ### Cell 10a — Run Smoke
 
-- [x] **10.1** Create `SMOKE_CONFIG` via `replace(CONFIG, save_training_history=True)`
-- [x] **10.2** Get ATCNet spec from MODEL_REGISTRY
-- [x] **10.3** Print smoke benchmark header (1 subject × 1 seed × 2 modes = 2 runs, estimated time)
-- [x] **10.4** Call `run_full_benchmark` with `modes=['controlled_baseline', 'apacore']`, `subjects=[1]`, `seeds=[42]`, `tag="smoke"`
-- [x] **10.5** Print per-mode results (accuracy, kappa, train time)
-- [x] **10.6** Print failure details if any
-- [x] **10.7** Compute and print Δacc (apacore - baseline)
+- [ ] **10.1** Create `SMOKE_CONFIG` via `replace(CONFIG, save_training_history=True)`
+- [ ] **10.2** Get ATCNet spec from MODEL_REGISTRY
+- [ ] **10.3** Print smoke benchmark header (1 subject × 1 seed × 2 modes = 2 runs, estimated time)
+- [ ] **10.4** Call `run_full_benchmark` with `modes=['controlled_baseline', 'apacore']`, `subjects=[1]`, `seeds=[42]`, `tag="smoke"`
+- [ ] **10.5** Print per-mode results (accuracy, kappa, train time)
+- [ ] **10.6** Print failure details if any
+- [ ] **10.7** Compute and print Δacc (apacore - baseline)
 
 ### Cell 10b — Sanity Check
 
-- [x] **10.8** Set `PROCEED = True` flag
-- [x] **10.9** Check baseline accuracy thresholds:
-  - [x] **10.9.1** Below 40%: CRITICAL error, set `PROCEED = False`
-  - [x] **10.9.2** Below 60%: WARNING, suggest review
-  - [x] **10.9.3** 60%+: reasonable, safe to proceed
-- [x] **10.10** Handle missing baseline result: set `PROCEED = False`
-- [x] **10.11** Print stop message if `PROCEED` is False
+- [ ] **10.8** Set `PROCEED = True` flag
+- [ ] **10.9** Check baseline accuracy thresholds:
+  - [ ] **10.9.1** Below 40%: CRITICAL error, set `PROCEED = False`
+  - [ ] **10.9.2** Below 60%: WARNING, suggest review
+  - [ ] **10.9.3** 60%+: reasonable, safe to proceed
+- [ ] **10.10** Handle missing baseline result: set `PROCEED = False`
+- [ ] **10.11** Print stop message if `PROCEED` is False
 
 ### Smoke Verification
 
-- [x] **10.12** Run smoke benchmark end-to-end on Colab
-- [x] **10.13** Verify smoke JSON file is created in `RESULTS_DIR`
-- [x] **10.14** Verify baseline accuracy is in expected range (~65–85% for S01)
-- [x] **10.15** Verify training time per run is reasonable (~15–20 min on A100)
-- [x] **10.16** Inspect smoke JSON structure: verify metadata, results, and failures fields
-- [x] **10.17** Debug and fix any issues revealed by smoke run before proceeding
+- [ ] **10.12** Run smoke benchmark end-to-end on Colab
+- [ ] **10.13** Verify smoke JSON file is created in `RESULTS_DIR`
+- [ ] **10.14** Verify baseline accuracy is in expected range (~65–85% for S01)
+- [ ] **10.15** Verify training time per run is reasonable (~15–20 min on A100)
+- [ ] **10.16** Inspect smoke JSON structure: verify metadata, results, and failures fields
+- [ ] **10.17** Debug and fix any issues revealed by smoke run before proceeding
 
 ------
 
@@ -2122,26 +2122,26 @@ The plan is already fully aligned with all 5 feedback points. Specifically, the 
 
 ### Cell 11a — Run Full
 
-- [x] **11.1** Assert `PROCEED` is True (gate from smoke check)
-- [x] **11.2** Create `FULL_CONFIG` via `replace(CONFIG, save_training_history=False, save_trial_outputs=True)`
-- [x] **11.3** Print full benchmark header (9 subjects × 5 seeds × 2 modes = 90 runs, estimated time)
-- [x] **11.4** Call `run_full_benchmark` with `modes=['controlled_baseline', 'apacore']`, `tag="full"`
-- [x] **11.5** Verify atomic saves are happening after each run (check intermediate JSON file)
+- [ ] **11.1** Assert `PROCEED` is True (gate from smoke check)
+- [ ] **11.2** Create `FULL_CONFIG` via `replace(CONFIG, save_training_history=False, save_trial_outputs=True)`
+- [ ] **11.3** Print full benchmark header (9 subjects × 5 seeds × 2 modes = 90 runs, estimated time)
+- [ ] **11.4** Call `run_full_benchmark` with `modes=['controlled_baseline', 'apacore']`, `tag="full"`
+- [ ] **11.5** Verify atomic saves are happening after each run (check intermediate JSON file)
 
 ### Cell 11b — Resume Template
 
-- [x] **11.6** Write commented-out resume cell with `RESUME_PATH` placeholder
-- [x] **11.7** Include instructions for finding the correct JSON filename after disconnect
-- [x] **11.8** Test resume functionality: interrupt a run, then resume from saved JSON and verify it skips completed runs
+- [ ] **11.6** Write commented-out resume cell with `RESUME_PATH` placeholder
+- [ ] **11.7** Include instructions for finding the correct JSON filename after disconnect
+- [ ] **11.8** Test resume functionality: interrupt a run, then resume from saved JSON and verify it skips completed runs
 
 ### Full Run Verification
 
-- [x] **11.9** Run full benchmark to completion (expect 6–8 hours on A100)
-- [x] **11.10** Monitor for failures during run (check printed output)
-- [x] **11.11** After completion: verify 90 results with status ‘ok’ in JSON
-- [x] **11.12** Verify companion `.npz` file is created with trial outputs
-- [x] **11.13** Verify each subject has exactly 5 seeds × 2 modes = 10 results
-- [x] **11.14** Spot-check a few accuracy values for reasonableness
+- [ ] **11.9** Run full benchmark to completion (expect 6–8 hours on A100)
+- [ ] **11.10** Monitor for failures during run (check printed output)
+- [ ] **11.11** After completion: verify 90 results with status ‘ok’ in JSON
+- [ ] **11.12** Verify companion `.npz` file is created with trial outputs
+- [ ] **11.13** Verify each subject has exactly 5 seeds × 2 modes = 10 results
+- [ ] **11.14** Spot-check a few accuracy values for reasonableness
 
 ------
 
@@ -2149,67 +2149,67 @@ The plan is already fully aligned with all 5 feedback points. Specifically, the 
 
 ### Cell 12a — Summary Table
 
-- [x] **12.1** Filter results to `status == 'ok'`
-- [x] **12.2** Compute per-subject mean accuracy, std, and kappa (averaged over seeds) for each mode
-- [x] **12.3** Build pandas DataFrame with columns: Mode, Subject, Accuracy, Acc_Std, Kappa, N_Seeds
-- [x] **12.4** Print grand summary: per-mode mean ± std accuracy and kappa
+- [ ] **12.1** Filter results to `status == 'ok'`
+- [ ] **12.2** Compute per-subject mean accuracy, std, and kappa (averaged over seeds) for each mode
+- [ ] **12.3** Build pandas DataFrame with columns: Mode, Subject, Accuracy, Acc_Std, Kappa, N_Seeds
+- [ ] **12.4** Print grand summary: per-mode mean ± std accuracy and kappa
 
 ### Cell 12b — Per-Subject Table
 
-- [x] **12.5** Pivot DataFrame to Subject × Mode table
-- [x] **12.6** Convert to percentage
-- [x] **12.7** Add Δ column (apacore - baseline)
-- [x] **12.8** Print formatted per-subject accuracy table
+- [ ] **12.5** Pivot DataFrame to Subject × Mode table
+- [ ] **12.6** Convert to percentage
+- [ ] **12.7** Add Δ column (apacore - baseline)
+- [ ] **12.8** Print formatted per-subject accuracy table
 
 ### Cell 12c — Accuracy Bar Chart
 
-- [x] **12.9** Create bar chart comparing mean accuracy for baseline vs apacore
-- [x] **12.10** Add error bars (std across subjects)
-- [x] **12.11** Add chance level line at 25%
-- [x] **12.12** Add percentage text labels above bars
-- [x] **12.13** Use mode-specific colors from `COLORS` dict
-- [x] **12.14** Save to `RESULTS_DIR/accuracy_bars.png`
+- [ ] **12.9** Create bar chart comparing mean accuracy for baseline vs apacore
+- [ ] **12.10** Add error bars (std across subjects)
+- [ ] **12.11** Add chance level line at 25%
+- [ ] **12.12** Add percentage text labels above bars
+- [ ] **12.13** Use mode-specific colors from `COLORS` dict
+- [ ] **12.14** Save to `RESULTS_DIR/accuracy_bars.png`
 
 ### Cell 12d — Per-Subject Heatmap
 
-- [x] **12.15** Create seaborn heatmap of per-subject accuracy (%) with annotations
-- [x] **12.16** Use `YlOrRd` colormap with range [40, 100]
-- [x] **12.17** Save to `RESULTS_DIR/heatmap.png`
+- [ ] **12.15** Create seaborn heatmap of per-subject accuracy (%) with annotations
+- [ ] **12.16** Use `YlOrRd` colormap with range [40, 100]
+- [ ] **12.17** Save to `RESULTS_DIR/heatmap.png`
 
 ### Cell 12e — Paired Subject Delta Plot
 
-- [x] **12.18** Create 1×2 subplot figure
-- [x] **12.19** Subplot (a): scatter plot of baseline vs apacore accuracy per subject, with identity line and subject labels
-- [x] **12.20** Subplot (b): horizontal bar chart of per-subject Δ accuracy, colored by direction (positive = apacore color, negative = baseline color)
-- [x] **12.21** Save to `RESULTS_DIR/paired_delta.png`
+- [ ] **12.18** Create 1×2 subplot figure
+- [ ] **12.19** Subplot (a): scatter plot of baseline vs apacore accuracy per subject, with identity line and subject labels
+- [ ] **12.20** Subplot (b): horizontal bar chart of per-subject Δ accuracy, colored by direction (positive = apacore color, negative = baseline color)
+- [ ] **12.21** Save to `RESULTS_DIR/paired_delta.png`
 
 ### Cell 12f — Confusion Matrices
 
-- [x] **12.22** Create 1×2 subplot figure for baseline and apacore
-- [x] **12.23** Aggregate confusion matrices across all subjects and seeds for each mode
-- [x] **12.24** Normalize rows to percentages
-- [x] **12.25** Display as annotated heatmaps with class names
-- [x] **12.26** Add mode name and overall accuracy to subplot titles
-- [x] **12.27** Save to `RESULTS_DIR/confusion_matrices.png`
+- [ ] **12.22** Create 1×2 subplot figure for baseline and apacore
+- [ ] **12.23** Aggregate confusion matrices across all subjects and seeds for each mode
+- [ ] **12.24** Normalize rows to percentages
+- [ ] **12.25** Display as annotated heatmaps with class names
+- [ ] **12.26** Add mode name and overall accuracy to subplot titles
+- [ ] **12.27** Save to `RESULTS_DIR/confusion_matrices.png`
 
 ------
 
 ## Phase 13: Section 13 — Statistical Analysis
 
-- [x] **13.1** Implement `wilcoxon_test_report(all_results, model_name)`:
-  - [x] **13.1.1** For each subject: collect per-seed accuracies for both modes
-  - [x] **13.1.2** Include subject only if it has exactly `N_REQUIRED_SEEDS` results for both modes
-  - [x] **13.1.3** Report excluded subjects with reason (incomplete seeds)
-  - [x] **13.1.4** Compute paired differences (apacore mean - baseline mean)
-  - [x] **13.1.5** Count nonzero differences (effective N)
-  - [x] **13.1.6** Count and report zero differences
-  - [x] **13.1.7** Skip test if N_eff < 5 (report minimum achievable p-value)
-  - [x] **13.1.8** Run one-sided Wilcoxon (`alternative="greater"`, `zero_method="wilcox"`)
-  - [x] **13.1.9** Run two-sided Wilcoxon (`alternative="two-sided"`, `zero_method="wilcox"`)
-  - [x] **13.1.10** Print: H1, unit of analysis, statistic, one-sided p, two-sided p, significance marker (✓/✗ at α=0.05), mean Δ, per-subject Δ values
-  - [x] **13.1.11** Print warnings: reduced power if N_complete < 9, N_eff=5 caveat (min two-sided p = 0.0625)
-- [x] **13.2** Call `wilcoxon_test_report(ok_results, 'ATCNet')`
-- [x] **13.3** Verify test output is interpretable and correctly formatted
+- [ ] **13.1** Implement `wilcoxon_test_report(all_results, model_name)`:
+  - [ ] **13.1.1** For each subject: collect per-seed accuracies for both modes
+  - [ ] **13.1.2** Include subject only if it has exactly `N_REQUIRED_SEEDS` results for both modes
+  - [ ] **13.1.3** Report excluded subjects with reason (incomplete seeds)
+  - [ ] **13.1.4** Compute paired differences (apacore mean - baseline mean)
+  - [ ] **13.1.5** Count nonzero differences (effective N)
+  - [ ] **13.1.6** Count and report zero differences
+  - [ ] **13.1.7** Skip test if N_eff < 5 (report minimum achievable p-value)
+  - [ ] **13.1.8** Run one-sided Wilcoxon (`alternative="greater"`, `zero_method="wilcox"`)
+  - [ ] **13.1.9** Run two-sided Wilcoxon (`alternative="two-sided"`, `zero_method="wilcox"`)
+  - [ ] **13.1.10** Print: H1, unit of analysis, statistic, one-sided p, two-sided p, significance marker (✓/✗ at α=0.05), mean Δ, per-subject Δ values
+  - [ ] **13.1.11** Print warnings: reduced power if N_complete < 9, N_eff=5 caveat (min two-sided p = 0.0625)
+- [ ] **13.2** Call `wilcoxon_test_report(ok_results, 'ATCNet')`
+- [ ] **13.3** Verify test output is interpretable and correctly formatted
 
 ------
 
@@ -2217,52 +2217,52 @@ The plan is already fully aligned with all 5 feedback points. Specifically, the 
 
 ### Cell 14a — Markdown Discussion
 
-- [x] **14.1** Write baseline performance discussion: expected ~75–82%, comparison caveat with published ATCNet (1125 vs 1000 samples)
-- [x] **14.2** Write APA-Core effect discussion: explain each component’s contribution
-- [x] **14.3** Write limitations section: single model, no ablation executed, no DVA/LLM, MI window difference
-- [x] **14.4** Write future work section: additional models, ablation modes, DVA, LLM explainability, ML classifiers
+- [ ] **14.1** Write baseline performance discussion: expected ~75–82%, comparison caveat with published ATCNet (1125 vs 1000 samples)
+- [ ] **14.2** Write APA-Core effect discussion: explain each component’s contribution
+- [ ] **14.3** Write limitations section: single model, no ablation executed, no DVA/LLM, MI window difference
+- [ ] **14.4** Write future work section: additional models, ablation modes, DVA, LLM explainability, ML classifiers
 
 ### Cell 14b — Export
 
-- [x] **14.5** Save summary DataFrame as `summary_table.csv`
-- [x] **14.6** Save per-subject pivot table as `per_subject_accuracy.csv`
-- [x] **14.7** List all output files in `RESULTS_DIR` with sizes
-- [x] **14.8** Print notebook completion message
+- [ ] **14.5** Save summary DataFrame as `summary_table.csv`
+- [ ] **14.6** Save per-subject pivot table as `per_subject_accuracy.csv`
+- [ ] **14.7** List all output files in `RESULTS_DIR` with sizes
+- [ ] **14.8** Print notebook completion message
 
 ------
 
 ## Phase 15: Final Verification & Quality Assurance
 
-- [x] **15.1** Run the complete notebook end-to-end from a fresh Colab runtime (Runtime → Restart and run all) — smoke only, to verify no state leakage between cells
-- [x] **15.2** Verify all 18 data files are loaded without error
-- [x] **15.3** Verify smoke benchmark produces reasonable accuracy (~65–85% for S01 baseline)
-- [x] **15.4** Verify all plots are generated and saved correctly
-- [x] **15.5** Verify JSON output structure: envelope has `metadata`, `results`, `failures`, `last_updated`
-- [x] **15.6** Verify resume works: manually stop after a few runs, restart, resume from JSON, confirm it picks up where it left off and does not re-run completed runs
-- [x] **15.7** Verify resume validation catches mismatched config (e.g., change `t_start` and confirm `ValueError` is raised)
-- [x] **15.8** Verify atomic write works: confirm no partial/corrupted JSON files after interruption
-- [x] **15.9** Verify companion `.npz` file contains correct keys and array shapes
-- [x] **15.10** Verify `PROCEED` gate blocks full benchmark when smoke fails
-- [x] **15.11** Verify Wilcoxon test handles edge cases: all zero differences, N_eff < 5, incomplete subjects
-- [x] **15.12** Verify all plots use correct colors from `COLORS` dict
-- [x] **15.13** Verify all saved files are in `RESULTS_DIR` (no files written elsewhere)
-- [x] **15.14** Verify memory cleanup: `del` statements and `torch.cuda.empty_cache()` are correctly placed
-- [x] **15.15** Review all print statements for clarity and correct formatting
-- [x] **15.16** Verify cell execution order independence: each cell should work if run after all preceding cells, regardless of whether Section 11 full benchmark was actually executed
-- [x] **15.17** Final code review: check for any hardcoded values that should reference `Config`, any missing error handling, any TODO comments left in code
+- [ ] **15.1** Run the complete notebook end-to-end from a fresh Colab runtime (Runtime → Restart and run all) — smoke only, to verify no state leakage between cells
+- [ ] **15.2** Verify all 18 data files are loaded without error
+- [ ] **15.3** Verify smoke benchmark produces reasonable accuracy (~65–85% for S01 baseline)
+- [ ] **15.4** Verify all plots are generated and saved correctly
+- [ ] **15.5** Verify JSON output structure: envelope has `metadata`, `results`, `failures`, `last_updated`
+- [ ] **15.6** Verify resume works: manually stop after a few runs, restart, resume from JSON, confirm it picks up where it left off and does not re-run completed runs
+- [ ] **15.7** Verify resume validation catches mismatched config (e.g., change `t_start` and confirm `ValueError` is raised)
+- [ ] **15.8** Verify atomic write works: confirm no partial/corrupted JSON files after interruption
+- [ ] **15.9** Verify companion `.npz` file contains correct keys and array shapes
+- [ ] **15.10** Verify `PROCEED` gate blocks full benchmark when smoke fails
+- [ ] **15.11** Verify Wilcoxon test handles edge cases: all zero differences, N_eff < 5, incomplete subjects
+- [ ] **15.12** Verify all plots use correct colors from `COLORS` dict
+- [ ] **15.13** Verify all saved files are in `RESULTS_DIR` (no files written elsewhere)
+- [ ] **15.14** Verify memory cleanup: `del` statements and `torch.cuda.empty_cache()` are correctly placed
+- [ ] **15.15** Review all print statements for clarity and correct formatting
+- [ ] **15.16** Verify cell execution order independence: each cell should work if run after all preceding cells, regardless of whether Section 11 full benchmark was actually executed
+- [ ] **15.17** Final code review: check for any hardcoded values that should reference `Config`, any missing error handling, any TODO comments left in code
 
 ------
 
 ## Phase 16: Full Benchmark Execution & Results Collection
 
-- [x] **16.1** Set Colab to A100 runtime (if available)
-- [x] **16.2** Run Sections 1–10 to confirm smoke passes
-- [x] **16.3** Run Section 11 (full benchmark): monitor for first few runs, then allow to run unattended
-- [x] **16.4** If Colab disconnects: reconnect, mount Drive, re-run Sections 1–9 (definitions only), run Section 11b resume cell with correct `RESUME_PATH`
-- [x] **16.5** After full benchmark completes: run Sections 12–14 for visualization, statistics, and export
-- [x] **16.6** Review all output files: JSON, NPZ, CSVs, PNGs
-- [x] **16.7** Verify Wilcoxon p-value and interpret results
-- [x] **16.8** Archive final notebook and all results
+- [ ] **16.1** Set Colab to A100 runtime (if available)
+- [ ] **16.2** Run Sections 1–10 to confirm smoke passes
+- [ ] **16.3** Run Section 11 (full benchmark): monitor for first few runs, then allow to run unattended
+- [ ] **16.4** If Colab disconnects: reconnect, mount Drive, re-run Sections 1–9 (definitions only), run Section 11b resume cell with correct `RESUME_PATH`
+- [ ] **16.5** After full benchmark completes: run Sections 12–14 for visualization, statistics, and export
+- [ ] **16.6** Review all output files: JSON, NPZ, CSVs, PNGs
+- [ ] **16.7** Verify Wilcoxon p-value and interpret results
+- [ ] **16.8** Archive final notebook and all results
 
 ------
 

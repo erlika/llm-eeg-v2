@@ -1,0 +1,25 @@
+Method,Year,Architecture,Acc_2a(%),Kappa,Acc_2b(%),Eval
+AMEEGNet,2025,Multi-scale EEGNet + ECA,81.17,0.75,89.83,Session-wise
+EEG-DCNet,2024,Dilated CNN + SE Attention,83.31,0.78,N/A,Sliding window
+CIACNet,2025,Dual-branch CNN+CBAM+TCN,85.15,0.80,90.05,Session-wise
+CLTNet,2025,CNN+LSTM+Transformer,83.02,0.77,87.11,Session-wise
+EEGEncoder,2025,TCN+Transformer (DSTS),86.46,0.82,N/A,Session-wise
+MSCFormer,2025,Multi-scale Conv+Transformer,82.95,0.77,88.00,5-fold CV
+BrainGridNet,2025,Two-branch Depthwise CNN,80.26,0.75,N/A,10-fold CV
+ATCNet,2022,Attention TCN,85.38,0.80,N/A,Session-wise
+LLM-EEG (LDA) [Real],2025,LDA+CSP+Std,49.55,0.33,N/A,Session-wise
+LLM-EEG (LDA) [Real],2025,LDA+CSP+APA+DVA,47.49,0.30,N/A,Session-wise
+LLM-EEG (SVM) [Real],2025,SVM+CSP+Std,40.42,0.21,N/A,Session-wise
+LLM-EEG (SVM) [Real],2025,SVM+CSP+APA+DVA,41.22,0.22,N/A,Session-wise
+LLM-EEG (EEGNET) [Real],2025,EEGNET+Std,24.85,0.00,N/A,Session-wise
+LLM-EEG (EEGNET) [Real],2025,EEGNET+APA+DVA,24.85,0.00,N/A,Session-wise
+LLM-EEG (ATCNET) [Real],2025,ATCNET+Std,24.85,0.00,N/A,Session-wise
+LLM-EEG (ATCNET) [Real],2025,ATCNET+APA+DVA,24.85,0.00,N/A,Session-wise
+LLM-EEG (EEGCONFORMER) [Real],2025,EEGCONFORMER+Std,24.85,0.00,N/A,Session-wise
+LLM-EEG (EEGCONFORMER) [Real],2025,EEGCONFORMER+APA+DVA,24.85,0.00,N/A,Session-wise
+LLM-EEG (EEGTCNET) [Real],2025,EEGTCNET+Std,24.85,0.00,N/A,Session-wise
+LLM-EEG (EEGTCNET) [Real],2025,EEGTCNET+APA+DVA,24.85,0.00,N/A,Session-wise
+LLM-EEG (CTNET) [Real],2025,CTNET+Std,24.85,0.00,N/A,Session-wise
+LLM-EEG (CTNET) [Real],2025,CTNET+APA+DVA,24.85,0.00,N/A,Session-wise
+LLM-EEG (MSCFORMER) [Real],2025,MSCFORMER+Std,24.85,0.00,N/A,Session-wise
+LLM-EEG (MSCFORMER) [Real],2025,MSCFORMER+APA+DVA,24.85,0.00,N/A,Session-wise
