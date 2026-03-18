@@ -1,0 +1,62 @@
+# ===================
+# APA-Core v1 .gitignore
+# ===================
+
+# Data files - never track large data
+data/
+*.mat
+*.npz
+*.npy
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+
+# Benchmark outputs - keep in Drive, not git
+benchmark_results/
+*_benchmark.json
+*_results.json
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.env/
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Large model files
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Colab-specific
+sample_data/
+EOF
