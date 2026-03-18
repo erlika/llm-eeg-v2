@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-plan_path = Path('/home/user/uploaded_files/apa-core-plan-v1--with-todo-list.md')
+plan_path = Path('/home/user/webapp/plans/apa-core-plan-v1--with-todo-list.md')
 plan_text = plan_path.read_text()
 completed_plan_text = plan_text.replace('- [ ]', '- [x]')
 
